@@ -1,6 +1,7 @@
 .juego{
-    width: fit-content;
-    /* display: flex; */
+    width: 770px;
+    width: -moz-fit-content;
+    display: flow-root;
     height: auto;
     margin: 10px;
 }
@@ -9,7 +10,7 @@
     width: 150px;
     height: 150px;
     float: left;
-    position: relative;
+    /* position: relative; */
     border: 2px solid white;
 }
 
