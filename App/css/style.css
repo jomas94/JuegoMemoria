@@ -1,57 +1,69 @@
+body{
+    background-image: url('../img/hogwarts.jpg');
+    background-size: cover;
+    
+}
+
+h1{
+    color: white;
+}
+
 .juego{
     width: 770px;
     width: -moz-fit-content;
     display: flow-root;
     height: auto;
     margin: 10px;
+    margin-top: 40px;
 }
 .imagen{
     background-color:black ;
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     float: left;
     /* position: relative; */
-    border: 2px solid white;
+    border: 2px solid black;
+    background-size: cover;
 }
 
-.imagen[value="1"] {
-    background-image: url('../img/01.jpg');
+/* .imagen[id='1'] {
+    background-image: url('../img/1.jpg');
     background-size: cover;
 }
 .imagen[value="2"] {
-    background-image: url('../img/02.jpg');
+    background-image: url('../img/2.jpg');
     background-size: cover;
 }
 .imagen[value="3"] {
-    background-image: url('../img/03.jpg');
+    background-image: url('../img/3.jpg');
     background-size: cover;
 }
 .imagen[value="4"] {
-    background-image: url('../img/04.jpg');
+    background-image: url('../img/4.jpg');
     background-size: cover;
 }
 .imagen[value="5"] {
-    background-image: url('../img/05.jpg');
+    background-image: url('../img/5.jpg');
     background-size: cover;
 }
 .imagen[value="6"] {
-    background-image: url('../img/06.jpg');
+    background-image: url('../img/6.jpg');
     background-size: cover;
 }
 .imagen[value="7"] {
-    background-image: url('../img/07.jpg');
+    background-image: url('../img/7.jpg');
     background-size: cover;
 }
 .imagen[value="8"] {
-    background-image: url('../img/08.jpg');
+    background-image: url('../img/8.jpg');
     background-size: cover;
 }
 .imagen[value="9"] {
-    background-image: url('../img/09.jpg');
+    background-image: url('../img/9.jpg');
     background-size: cover;
 }
 .imagen[value="10"] {
     background-image: url('../img/10.jpg');
     background-size: cover;
-}
+} */
 
