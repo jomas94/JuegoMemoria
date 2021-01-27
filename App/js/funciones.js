@@ -27,7 +27,7 @@ function crearJuego(nivel){
         $('.juego').append("<div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><br>");
     }
            
-    $('.juego').css({border:'2px solid black'});
+    $('.juego').css({border:'4px solid black'});
     // $('.imagen').css({backgroundColor:'black', width:'100px',height:'100px',border:'2px solid white'});
 
     valores();
@@ -45,7 +45,3 @@ function valores() {
     
 }
 
-function meterimagenes() {
-
-    
-}
