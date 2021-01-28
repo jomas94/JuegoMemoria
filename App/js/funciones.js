@@ -2,6 +2,7 @@ $(document).ready(inicio);
 
 function inicio() {
 
+     // randomiza el array al elegir la dificultad
     // flipar();
 }
 
@@ -25,37 +26,38 @@ function aleatorizar(array) {
 }
 
 function crearJuego(){
-
+    aleatorizar(array);
     $('.juego').html(''); //reset
-
-    aleatorizar(array); // randomiza el array al elegir la dificultad
 
     for(var i=0; i<4; i++ ){
 
         $('.juego').append("<div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><br>"); // añado los div que llevarán las imagenes
+    
     }
     $('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'});
     $('.juego').css({border:'4px solid black'}); //aplico un border al juego al empezar
-    // atribuirImagenes();
+    
+    setImagenes();//enseño las imagenes
+    setTimeout(function(){$('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'})},3000); // tras tres segundos las giro
     valores();
-    flipar(); // ejecuto la funcion valores
+    flipar();
     
 } 
 
-function atribuirImagenes(valor) {
+function atribuirImagenes(valor) { //vuelvo a poner la imagen inicial
+    //comprobar si las imagenes son iguales
+    $(`#(${valor})`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
 
-    for( var i=1; i<21; i++){
-        var value = $(`.imagen:eq(${i})`).attr("value");
-        
-        console.log(value);
-        
-        if( value==valor){
-            console.log("match");
-            $(`.imagen:eq(${valor})`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
-        }
+}
 
+function setImagenes(){
+
+    for(let i in aleatorios) { 
+        
+        $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
+        $(`.imagen:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
     }
-    
+
 }
 
 
@@ -65,18 +67,69 @@ function valores() { // funcion que atribue valores del array a las imagenes
 
     for(let i in aleatorios) { // recogemos el array y atribuimos los valores
         $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
+        
     }   
+    for(var j=0; j<21; j++){ //atribuo IDs a las imagens
+        $(`.imagen:eq(${j})`).attr("id",[(j+1)]);
+    }
 }
 
 function flipar(){
     
     $(".imagen").click(function () {
+        var valorclicado = $(this).attr('value');
+        var idclicado = $(this).attr('id');
+        console.log(valorclicado);
+        console.log(idclicado);
+
+
         var valor = $(this).attr("value");
-        $(this).css({backgroundImage:'url(\'./img/'+valor+'.jpg \')'},
-            setTimeout(function(){atribuirImagenes(valor)},2000)
-        );
+        $(this).css({backgroundImage:'url(\'./img/'+valorclicado+'.jpg \')'});
+
+
+
+        // for(var j=0; j<21; j++){
+            // var buscando = $(`.imagen:eq(${j})`).attr("id");
+            
+            // console.log(buscando);
+            if(valor1==valor2){ // comprobar si son iguales
+                deshabilitar(valor1,valor2); //deshabilitar si son iguales
+                comprobar();
+                // }
+            }else{
+                setTimeout(function(){atribuirImagenes(idclicado)},2000)
+            }
+        // }
+
+        //     setTimeout(function(){atribuirImagenes(valor)},2000)
+        // );
     });
         
     
 }
-// atribuirImagenes(valor)
+
+function deshabilitar(img1,img2){ //Ids de las imágenes
+
+    $(`#${img1}`).css({pointerEvents:"none" });
+    $(`#${img2}`).css({pointerEvents:"none" });
+     
+}
+
+function comprobar(){
+    var matchs=0;
+
+    for(var j=0; j<21; j++){ 
+        var comprueba =$(`.imagen:eq(${j})`).class();
+        
+        if(comprueba==""){
+            matchs++
+        }
+    }
+
+    if(matchs==20){
+        aler("HAS GANADO");
+
+    }
+
+
+}
