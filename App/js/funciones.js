@@ -111,6 +111,7 @@ function flipar(){
 function deshabilitar(img1,img2){ //Ids de las imágenes
 
     $(`#${img1}`).css({pointerEvents:"none" });
+    $(`#${img1}`).addClass("");
     $(`#${img2}`).css({pointerEvents:"none" });
      
 }
