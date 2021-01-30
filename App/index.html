@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/hp.jpg"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script> -->
-    <script src= "https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js/funciones.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet"> 
     <title>Juedo de la Memoria</title>
 
 </head>
@@ -18,12 +18,17 @@
     <h1>Juego de la Memoria</h1>
     <button onclick="crearJuego();">2x3</button>
     <button onclick="crearJuego();">3x4</button>
-    <button onclick="crearJuego();" class="botton">5x4</button>
-    <div class="juego"></div>
-    <div class="controles"></div>
+    <button onclick="crearJuego();">5x4</button>
+    <div class="controles">
+        <h2>    
+            Movimientos:<span class="movimientos">0</span>Tiempo: <span class="tiempo">00:00:00</span>
+        </h2>
+    </div>
+   
     
+    <table class="juego"></table>
     <div class="dialogo">
-        <p>LETS GOOOOO</p>
+        LETS GOOOOO
     </div>
 
 </body>

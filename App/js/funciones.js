@@ -4,17 +4,7 @@ function inicio() {
 
     // randomiza el array al elegir la dificultad
     // flipar();
-    // $(".dialogo" ).dialog({
-    //     autoOpen: false,
-    //     show: {
-    //       effect: "blind",
-    //       duration: 1000
-    //     },
-    //     hide: {
-    //       effect: "explode",
-    //       duration: 1000
-    //     }
-    //   });
+    crear_dialogo();
 
 
 }
@@ -40,8 +30,9 @@ function aleatorizar(array) {
 }
 
 function crearJuego(){
-    
     //vaciamos los arrays cada vez que empezamos el juego
+    match=0;
+    move=0;
     comprobando = []; 
     comprobandoID = [];
     aleatorizar(array);
@@ -55,9 +46,11 @@ function crearJuego(){
     }
     $('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'});
     $('.juego').css({border:'4px solid black'}); //aplico un border al juego al empezar
-    
+    $('.movimientos').text('0');
     setImagenes();//enseño las imagenes
     setTimeout(function(){$('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'})},2000); // tras tres segundos las giro
+    setTimeout(function(){cronometro()},2000); // tras tres segundos las giro
+    
     valores();
     flipar();
     comprobar();
@@ -77,24 +70,25 @@ function valores() { // funcion que atribue valores del array a las imagenes
 }
 
 
-function setImagenes(){
+function setImagenes(){ //Enseña las imagens al empezar
     
     for(let i in aleatorios) { 
         
         $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
-        $(`.imagen:eq(${i}), .imagen2:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
+        $(`.imagen:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
     }
     
 }
 
-
+var move=0;
 function flipar(){
     
     $(".imagen").click(function () {    
         var valorclicado = $(this).attr('value');
         var idclicado = $(this).attr('id');
-        
+        move++;
         $(this).css({backgroundImage:'url(\'./img/'+valorclicado+'.jpg \')'});
+        $('.movimientos').text(move);
             
     });
 }
@@ -161,13 +155,60 @@ function comprobar(){
 
 }
 
+
+function crear_dialogo(){
+    $('.dialogo').dialog({
+        height:"auto",
+		width:400,
+        modal:true,
+        title: 'ZORIONAK',
+		buttons:{
+            "Cerrar":function(){
+                $(this).dialog("close");
+			},
+			
+		},
+		autoOpen:false
+	});
+}
+
 var match=0;
 
 function hasganado(){
     match ++;
-    console.log(match);
+    console.log("match"+match);
     if(match==10){
-        // $(".dialogo").dialog("open");
+        $(".dialogo").dialog("open");
     }
+
+}
+
+var inicio=0
+ function cronometro()
+{
+
+    // obteneos la fecha actual
+    var actual = new Date();
+
+
+
+    // obtenemos la diferencia entre la fecha actual y la de inicio
+
+    var diff=new Date(actual-inicio);
+
+
+
+    // mostramos la diferencia entre la fecha actual y la inicial
+
+    var result=diff.getUTCHours()+":"+diff.getUTCMinutes()+":"+diff.getUTCSeconds();
+
+    // document.getElementById('crono').innerHTML = result;
+    $('.tiempo').text(result);
+
+
+
+    // Indicamos que se ejecute esta función nuevamente dentro de 1 segundo
+
+    setTimeout( function(){cronometro()},1000);
 
 }

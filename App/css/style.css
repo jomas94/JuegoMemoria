@@ -1,3 +1,7 @@
+*{
+
+    font-family: 'Yusei Magic','Helvetica', Arial, sans-serif;
+}
 body{
     background-image: url('../img/hogwarts.jpg');
     background-size: cover;
@@ -6,6 +10,24 @@ body{
 
 h1{
     color: white;
+    margin: 30px 50px;
+    font-size: 50px;
+}
+h2{
+    color: white;
+}
+button{
+    font-weight: bolder;
+    font-size: 25px;
+    width: 150px;
+    height: 50px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+    margin: 0 15px;
+}
+button:active{
+    transform: scale(0.90);
 }
 
 .juego{
@@ -25,45 +47,12 @@ h1{
     border: 2px solid black;
     background-size: cover;
 }
+.movimientos{
+    margin-left: 10px;
+    margin-right: 30px;
+}
 
 /* .imagen[id='1'] {
     background-image: url('../img/1.jpg');
     background-size: cover;
 }
-.imagen[value="2"] {
-    background-image: url('../img/2.jpg');
-    background-size: cover;
-}
-.imagen[value="3"] {
-    background-image: url('../img/3.jpg');
-    background-size: cover;
-}
-.imagen[value="4"] {
-    background-image: url('../img/4.jpg');
-    background-size: cover;
-}
-.imagen[value="5"] {
-    background-image: url('../img/5.jpg');
-    background-size: cover;
-}
-.imagen[value="6"] {
-    background-image: url('../img/6.jpg');
-    background-size: cover;
-}
-.imagen[value="7"] {
-    background-image: url('../img/7.jpg');
-    background-size: cover;
-}
-.imagen[value="8"] {
-    background-image: url('../img/8.jpg');
-    background-size: cover;
-}
-.imagen[value="9"] {
-    background-image: url('../img/9.jpg');
-    background-size: cover;
-}
-.imagen[value="10"] {
-    background-image: url('../img/10.jpg');
-    background-size: cover;
-} */
-
