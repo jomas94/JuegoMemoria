@@ -2,18 +2,23 @@ $(document).ready(inicio);
 
 function inicio() {
 
-    // randomiza el array al elegir la dificultad
-    // flipar();
     crear_dialogo();
-
+    crono();
 
 }
-
-
+var tiempo = { //variables del cronometro
+    hora: 0,
+    minuto: 0,
+    segundo: 0,
+    centesima:0,
+    corriendo :0
+};
+//arrays usados
 var array = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
 var aleatorios = [];
 var comprobando = [];
 var comprobandoID = [];
+
 function aleatorizar(array) {
     var j, x, i;
     //Recorremos el array del final hacia delante
@@ -33,6 +38,15 @@ function crearJuego(){
     //vaciamos los arrays cada vez que empezamos el juego
     match=0;
     move=0;
+    tiempo = {
+        hora: 0,
+        minuto: 0,
+        segundo: 0,
+        centesima:0,
+        corriendo :0
+    };
+    clearInterval(tiempo.corriendo);
+
     comprobando = []; 
     comprobandoID = [];
     aleatorizar(array);
@@ -47,9 +61,6 @@ function crearJuego(){
     $('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'});
     $('.juego').css({border:'4px solid black'}); //aplico un border al juego al empezar
     $('.movimientos').text('0');
-    setImagenes();//enseño las imagenes
-    setTimeout(function(){$('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'})},2000); // tras tres segundos las giro
-    setTimeout(function(){cronometro()},2000); // tras tres segundos las giro
     
     valores();
     flipar();
@@ -70,15 +81,15 @@ function valores() { // funcion que atribue valores del array a las imagenes
 }
 
 
-function setImagenes(){ //Enseña las imagens al empezar
+// function setImagenes(){ //Enseña las imagens al empezar
     
-    for(let i in aleatorios) { 
+//     for(let i in aleatorios) { 
         
-        $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
-        $(`.imagen:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
-    }
+//         $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
+//         $(`.imagen:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
+//     }
     
-}
+// }
 
 var move=0;
 function flipar(){
@@ -159,16 +170,13 @@ function comprobar(){
 function crear_dialogo(){
     $('.dialogo').dialog({
         height:"auto",
-		width:400,
+		width:550,
         modal:true,
-        title: 'ZORIONAK',
-		buttons:{
-            "Cerrar":function(){
-                $(this).dialog("close");
-			},
-			
-		},
-		autoOpen:false
+        title: 'ZORIONAK!!!!',
+        resizable:false,
+        draggable: false,
+		autoOpen: false,
+        show: {effect: "bounce", duration: 3000},
 	});
 }
 
@@ -179,36 +187,42 @@ function hasganado(){
     console.log("match"+match);
     if(match==10){
         $(".dialogo").dialog("open");
+        // $(".dialogo").animate("open");
+        clearInterval(tiempo.corriendo);
     }
 
 }
 
-var inicio=0
- function cronometro()
-{
-
-    // obteneos la fecha actual
-    var actual = new Date();
-
-
-
-    // obtenemos la diferencia entre la fecha actual y la de inicio
-
-    var diff=new Date(actual-inicio);
-
-
-
-    // mostramos la diferencia entre la fecha actual y la inicial
-
-    var result=diff.getUTCHours()+":"+diff.getUTCMinutes()+":"+diff.getUTCSeconds();
-
-    // document.getElementById('crono').innerHTML = result;
-    $('.tiempo').text(result);
-
-
-
-    // Indicamos que se ejecute esta función nuevamente dentro de 1 segundo
-
-    setTimeout( function(){cronometro()},1000);
-
+function crono(){ 
+    
+    $(".boton").click(function(){
+        if ( $(this).text() == 'Iniciar' ){
+            tiempo.corriendo = setInterval(function(){
+                // centesimas
+                tiempo.centesima++;
+                if(tiempo.centesima >= 100){
+                    tiempo.centesima =0;
+                    tiempo.segundo++;
+                }  
+                // Segundos
+                if(tiempo.segundo >= 60){
+                    tiempo.segundo = 0;
+                    tiempo.minuto++;
+                }      
+                // Minutos
+                if(tiempo.minuto >= 60){
+                    tiempo.minuto = 0;
+                    tiempo.hora++;
+                }
+                $("#minuto").text(tiempo.minuto < 10 ? '0' + tiempo.minuto : tiempo.minuto);
+                $("#segundo").text(tiempo.segundo < 10 ? '0' + tiempo.segundo : tiempo.segundo);
+                $("#centesima").text(tiempo.centesima < 10 ? '0' + tiempo.centesima : tiempo.centesima);
+            }, 10);
+        }
+        else 
+        {
+            clearInterval(tiempo.corriendo);
+        }
+    })        
+    
 }
