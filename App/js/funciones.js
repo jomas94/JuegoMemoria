@@ -69,8 +69,6 @@ function crearJuego(){
 
 function valores() { // funcion que atribue valores del array a las imagenes
 
-   console.log(aleatorios);
-
     for(let i in aleatorios) { // recogemos el array y atribuimos los valores
         $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
         
@@ -80,23 +78,12 @@ function valores() { // funcion que atribue valores del array a las imagenes
     }
 }
 
-
-// function setImagenes(){ //Enseña las imagens al empezar
-    
-//     for(let i in aleatorios) { 
-        
-//         $(`.imagen:eq(${i})`).attr("value",aleatorios[i]);
-//         $(`.imagen:eq(${i})`).css({backgroundImage:'url(\'./img/'+aleatorios[i]+'.jpg \')'});
-//     }
-    
-// }
-
 var move=0;
 function flipar(){
     
     $(".imagen").click(function () {    
         var valorclicado = $(this).attr('value');
-        var idclicado = $(this).attr('id');
+        // var idclicado = $(this).attr('id');
         move++;
         $(this).css({backgroundImage:'url(\'./img/'+valorclicado+'.jpg \')'});
         $('.movimientos').text(move);
@@ -105,13 +92,11 @@ function flipar(){
 }
     
 function atribuirImagenes(img1,img2) { //vuelvo a poner la imagen inicial
-    console.log(img1,img2);
     $(`#${img1}`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
     $(`#${img2}`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
 
 }
 function deshabilitar(img1,img2){ //Ids de las imágenes
-    console.log(`id1:${img1}. id2:${img2}`);
     $(`#${img1}`).css({pointerEvents:"none" });
     $(`#${img2}`).css({pointerEvents:"none" });
     
@@ -128,18 +113,14 @@ function comprobar(){
         comprobando.push(valorclicado);
         comprobandoID.push(idclicado);
         
-        console.log(comprobando);
-        
         if(comprobando.length==2){
 
             if(comprobando[0]===comprobando[1] && comprobandoID[0]!=comprobandoID[1]){ // PAREJA
-                console.log("son pareja");
 
                 deshabilitar(comprobandoID[0],comprobandoID[1]);
                 hasganado();
             }
             else if(comprobandoID[0]!=comprobandoID[1] && comprobando[0]!=comprobando[1]){ // INCORRECTO
-                console.log("son distintos");
                 setTimeout(function(){
                     atribuirImagenes(comprobandoID[0],comprobandoID[1])
                         
@@ -151,8 +132,6 @@ function comprobar(){
 
         }
         if(comprobando.length==3){
-            console.log("borrar array ");
-
             comprobando=[];
             comprobando.push(valorclicado);
             comprobandoID=[];
@@ -184,10 +163,8 @@ var match=0;
 
 function hasganado(){
     match ++;
-    console.log("match"+match);
     if(match==10){
         $(".dialogo").dialog("open");
-        // $(".dialogo").animate("open");
         clearInterval(tiempo.corriendo);
     }
 
