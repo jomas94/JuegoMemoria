@@ -58,7 +58,7 @@ function crearJuego(){
         $('.juego').append("<div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><div class='imagen'></div><br>"); // añado los div que llevarán las imagenes
     
     }
-    $('.imagen').css({backgroundImage:'url(\'./img/hp.jpg \')'});
+    $('.imagen').css({backgroundImage:'url(\'App/img/hp.jpg \')'});
     $('.juego').css({border:'4px solid black'}); //aplico un border al juego al empezar
     $('.movimientos').text('0');
     
@@ -85,15 +85,15 @@ function flipar(){
         var valorclicado = $(this).attr('value');
         // var idclicado = $(this).attr('id');
         move++;
-        $(this).css({backgroundImage:'url(\'./img/'+valorclicado+'.jpg \')'});
+        $(this).css({backgroundImage:'url(\'App/img/'+valorclicado+'.jpg \')'});
         $('.movimientos').text(move);
             
     });
 }
     
 function atribuirImagenes(img1,img2) { //vuelvo a poner la imagen inicial
-    $(`#${img1}`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
-    $(`#${img2}`).css({backgroundImage:'url(\'./img/hp.jpg \')'});   
+    $(`#${img1}`).css({backgroundImage:'url(\'App/img/hp.jpg \')'});   
+    $(`#${img2}`).css({backgroundImage:'url(\'App/img/hp.jpg \')'});   
 
 }
 function deshabilitar(img1,img2){ //Ids de las imágenes
